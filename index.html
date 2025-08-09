@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop Admin — Add Products</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Shop Admin</h1>
+    <nav class="actions">
+      <button id="toggleFormBtn" class="btn secondary" aria-expanded="true" aria-controls="addProductPanel">
+        Hide add product
+      </button>
+      <button id="clearAllBtn" class="btn danger" title="Remove all products">Clear all</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Add Product Panel -->
+    <section id="addProductPanel" class="panel">
+      <h2>Add a product</h2>
+      <form id="productForm" novalidate>
+        <div class="field">
+          <label for="name">Product name</label>
+          <input id="name" name="name" type="text" placeholder="e.g., Classic Tee" required maxlength="100" />
+          <small class="error" data-for="name"></small>
+        </div>
+
+        <div class="field">
+          <label for="price">Price (USD)</label>
+          <input id="price" name="price" type="number" inputmode="decimal" step="0.01" min="0" placeholder="e.g., 29.99" required />
+          <small class="error" data-for="price"></small>
+        </div>
+
+        <div class="field">
+          <label for="image">Image</label>
+          <input id="image" name="image" type="file" accept="image/*" />
+          <small class="hint">Optional. JPG/PNG/WebP recommended. Max ~3 MB.</small>
+          <small class="error" data-for="image"></small>
+        </div>
+
+        <div class="preview" id="imagePreview" aria-live="polite">
+          <div class="preview-box placeholder">No image selected</div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Add product</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Products</h2>
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Search by name…" />
+        </div>
+      </div>
+
+      <div id="productGrid" class="grid" aria-live="polite"></div>
+
+      <template id="productCardTemplate">
+        <article class="card" data-id="">
+          <div class="card-media">
+            <img alt="" loading="lazy" />
+            <div class="no-image">No image</div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title"></h3>
+            <p class="card-price"></p>
+            <div class="card-actions">
+              <button class="btn danger btn-delete" title="Delete product">Delete</button>
+            </div>
+          </div>
+        </article>
+      </template>
+
+      <p id="emptyState" class="empty">No products yet. Add your first one above.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Local demo — no server required</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
 
